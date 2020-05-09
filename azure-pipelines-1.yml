@@ -6,18 +6,6 @@
 # A pipeline with no CI trigger
 trigger: none
 
-schedules:
-- cron: "5 15 * * *"
-  displayName: Daily midnight build
-  branches:
-    include:
-    - master
-    - releases/*
-    exclude:
-    - releases/ancient/*
-  always: true
-
-
 pool:
   vmImage: 'windows-latest'
 
