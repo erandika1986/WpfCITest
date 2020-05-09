@@ -32,7 +32,8 @@
 
             <Button Grid.Row="2" Grid.Column="1" Height="25" Width="100" HorizontalAlignment="Left">Login</Button>
         </Grid>
-        
+
+        <TextBlock Grid.Row="1" FontSize="40">Test</TextBlock>
 
     </Grid>
 </Window>
