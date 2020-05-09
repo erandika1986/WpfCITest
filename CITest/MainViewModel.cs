@@ -42,7 +42,7 @@ namespace CITest
             set
             {
                 _renderableSeries = value;
-                OnPropertyChanged("RenderableSeries");
+                OnPropertyChanged("RenderableSeries")
             }
         }
 
