@@ -3,8 +3,19 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
-trigger:
-- master
+trigger:none
+
+schedules:
+- cron: "0 3 * * *"
+  displayName: Daily midnight build
+  branches:
+    include:
+    - master
+    - releases/*
+    exclude:
+    - releases/ancient/*
+  always: true
+
 
 pool:
   vmImage: 'windows-latest'
