@@ -13,14 +13,39 @@
     </Window.Resources>
     
     <Grid DataContext="{StaticResource MainViewModel}">
+        <!-- New code here. Add RowDefinitions -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <s:SciChartSurface RenderableSeries="{s:SeriesBinding RenderableSeries}" ChartTitle="{Binding ChartTitle}">
-            <s:SciChartSurface.XAxes>
+        <!-- New code here: Add controls to toggle between zoom and pan -->
+        <StackPanel Orientation="Horizontal" Background="#333">
+            <CheckBox Margin="5" Foreground="#FFF" Content="Enable Zoom?" IsChecked="{Binding EnableZoom, Mode=TwoWay}"/>
+            <CheckBox Margin="5" Foreground="#FFF" Content="Enable Pan?" IsChecked="{Binding EnablePan, Mode=TwoWay}" />
+        </StackPanel>
+
+        <!-- END NEW CODE -->
+        <!-- Don't forget to add Grid.Row=1 -->
+        <s:SciChartSurface Grid.Row="1"
+                           RenderableSeries="{s:SeriesBinding RenderableSeries}"  
+                           ChartTitle="{Binding ChartTitle}">
+            <s:SciChartSurface.XAxis>
                 <s:NumericAxis AxisTitle="{Binding XAxisTitle}"/>
-            </s:SciChartSurface.XAxes>
-            <s:SciChartSurface.YAxes>
+            </s:SciChartSurface.XAxis>
+            <s:SciChartSurface.YAxis>
                 <s:NumericAxis AxisTitle="{Binding YAxisTitle}"/>
-            </s:SciChartSurface.YAxes>
+            </s:SciChartSurface.YAxis>
+
+            <s:SciChartSurface.ChartModifier>
+                <!-- Ensure ModifierGroup DataContext is the MainViewModel (not the ChartViewModel)-->
+                <s:ModifierGroup>
+                    <s:RubberBandXyZoomModifier IsEnabled="{Binding EnableZoom}" />
+                    <s:ZoomPanModifier IsEnabled="{Binding EnablePan}" ClipModeX="None" />
+                    <s:ZoomExtentsModifier/>
+                </s:ModifierGroup>
+            </s:SciChartSurface.ChartModifier>
+
         </s:SciChartSurface>
 
     </Grid>

@@ -73,5 +73,35 @@ namespace CITest
                 OnPropertyChanged("YAxisTitle");
             }
         }
+
+
+        private bool _enableZoom = true;
+        public bool EnableZoom
+        {
+            get { return _enableZoom; }
+            set
+            {
+                if (_enableZoom != value)
+                {
+                    _enableZoom = value;
+                    OnPropertyChanged("EnableZoom");
+                    if (_enableZoom) EnablePan = false;
+                }
+            }
+        }
+        private bool _enablePan;
+        public bool EnablePan
+        {
+            get { return _enablePan; }
+            set
+            {
+                if (_enablePan != value)
+                {
+                    _enablePan = value;
+                    OnPropertyChanged("EnablePan");
+                    if (_enablePan) EnableZoom = false;
+                }
+            }
+        }
     }
 }
