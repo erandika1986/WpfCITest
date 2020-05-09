@@ -13,7 +13,7 @@ namespace CITest
 {
     public class MainViewModel : BindableObject
     {
-        private string _chartTitle = "Hello SciChart World!";
+        private string _chartTitle = "Hello SciChart World!!!!";
         private string _xAxisTitle = "XAxis";
         private string _yAxisTitle = "YAxis";
 
